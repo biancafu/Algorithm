@@ -25,4 +25,9 @@ class LinkedList():
         curr_node.next = new_node #append node to end of linkedlist
         
     #prepend - insert node in the beginning of linkedlist
+    def prepend(self, data):
+        new_node = Node(data)
+        new_node.next = self.head #new node pointing to node at head of linkedlist
+        self.head = new_node #change head of linkedlist to new node
+    
     #insert_after_node - insert after a specific node 
