@@ -31,3 +31,18 @@ class LinkedList():
         self.head = new_node #change head of linkedlist to new node
     
     #insert_after_node - insert after a specific node 
+    def insert_after_node(self, prev_node, data):
+        #A->B->C (B = prev_node)
+        #insert D after B (ABDC)
+
+        if not prev_node: #check if node is None or doesnt exist
+            print("Node does not exist")
+            return
+        
+        new_node = Node(data) #D = new_node
+        new_node.next = prev_node.next #A->B->C, D->C
+        prev_node.next = new_node #A->B->D, D->C <=> A->B->D->C
+
+        
+
+        
