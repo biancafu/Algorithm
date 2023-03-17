@@ -42,6 +42,34 @@ class LinkedList():
         new_node = Node(data) #D = new_node
         new_node.next = prev_node.next #A->B->C, D->C
         prev_node.next = new_node #A->B->D, D->C <=> A->B->D->C
+    
+    def delete_node(self, key): #delete node by data
+        cur_node = self.head
+        # need to identify 2 cases: 
+        #   1. deleting head node
+        #   2. deleting some node in the linkedlist
+
+        #case 1: deleting head node
+        if cur_node and cur_node.data == key: 
+            self.head = cur_node.next
+            cur_node = None
+            return
+        
+        prev_node = None #prev node at head node
+        #case 2: deleting some node in the linkedlist
+        while cur_node.data != key: #find the node according to key
+            prev_node = cur_node
+            cur_node = cur_node.next
+        
+        if cur_node is None: #if we can't find a matching node in list
+            return
+        
+        prev_node.next = cur_node.next #prev_node -> cur_node.next (skipping the cur_node) meaning we removed the cur_node from linkedlist
+        cur_node = None #deleting the cur_node
+
+
+        
+        
 
         
 
