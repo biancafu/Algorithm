@@ -10,6 +10,12 @@ class LinkedList():
     def __init__(self):
         self.head = None #empty linkedlist
 
+    def print_list(self):
+        cur_node = self.head
+        while cur_node:
+            print(cur_node.data)
+            cur_node = cur_node.next
+
     #insertion, O(n)
     #append - append node at the end of linkedlist
     def append(self, data):
@@ -94,15 +100,22 @@ class LinkedList():
             prev_node.next = cur_node.next
             cur_node = None
 
-            
+    #get length by iteration
+    def len_iteration(self):
+        cur_node = self.head
+        count = 0
 
-
-
+        while cur_node:
+            count += 1
+            cur_node = cur_node.next
         
+        return count
 
-        
-        
+    #get length by recursion
+    def len_recursion(self, node): #pass in the node you want to start counting from
+        if node is None: #breaking condition (end of linkedlist)
+            return 0
+        return 1 + len_recursion(node.next) #counting next node
 
-        
-
+    
         
