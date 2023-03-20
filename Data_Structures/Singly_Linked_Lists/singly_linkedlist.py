@@ -117,5 +117,43 @@ class LinkedList():
             return 0
         return 1 + len_recursion(node.next) #counting next node
 
-    
+    #swap node
+    def swap_nodes(self, key1, key2):
+        if key1 == key2: #cannot swap same element
+            return
+        
+        #find the node matching the key and its previous node
+        cur1 = self.head
+        prev1 = None
+        while cur1 and cur1.data != key1:
+            prev1 = cur1
+            cur1 = cur1.next
+
+        cur2 = self.head
+        prev2 = None
+        while cur2 and cur2.data != key2:
+            prev2 = cur2
+            cur2 = cur2.next
+
+        #check if we can find a matching values (nodes) in the list
+        if not cur1 or not cur2:
+            return
+
+        #check if previous node is None
+        if prev1: #if previous node exists
+            prev1.next = cur2 #swap direction pointing to new value
+        else:  #cur node is head if previous is None
+            self.head = cur2 #swap head
+
+        if prev2:
+            prev2.next = cur1
+        else:
+            self.head = cur1
+        
+        cur1.next, cur2.next = cur2.next, cur1.next
+        
+
+
+        
+
         
