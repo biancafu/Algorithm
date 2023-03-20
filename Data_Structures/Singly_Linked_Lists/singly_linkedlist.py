@@ -152,7 +152,17 @@ class LinkedList():
         
         cur1.next, cur2.next = cur2.next, cur1.next
         
-
+    #reverse
+    def reverse_iterative(self):
+        prev = None
+        curr = self.head
+        while curr:
+            next = curr.next #save next node in variable
+            curr.next = prev #reverse the direction pointing to previous node
+            prev = curr #set new previous to current node
+            curr = next #update current node to the next node in linkedlist
+        
+        self.head = prev #set the new head to last node (curr = None when we break out of while loop)
 
         
 
