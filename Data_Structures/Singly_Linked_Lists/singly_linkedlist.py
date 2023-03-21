@@ -178,3 +178,46 @@ class LinkedList():
         
         #need to update new head
         self.head = _reverse(cur = self.head, prev = None)
+
+    #merge 2 sorted linkedlists
+    def merge_sorted_lists(self, list1): 
+        #set pointers
+        p = self.head
+        q = list1.head
+        s = None 
+
+        if not p: #p is an empty list
+            return q
+        if not q:
+            return p
+
+        #figure out where s starts (new head), pick from small to big
+        if p and q: #dont think its necessary to check again?
+            if p.data <= q.data:
+                s = p
+                p = s.next #move to the next item in p list
+            else:
+                s = q
+                q = s.next
+            new_head = s
+        
+        while p and q:
+            if p.data <= q.data:
+                s.next = p # s (merged list) point/connect to next node 
+                s = p # increment s to where p is currently
+                p = s.next # poiny p to the next node in p list
+            else:
+                s.next = q
+                s = q
+                q = s.next
+            
+        #while loops breaks when one of the list is finished
+        if not p:
+            s.next = q #append the remaining list to merged list pointer s
+        if not q:
+            s.next = p
+        
+        self.head = new_head
+        return self.head
+
+
