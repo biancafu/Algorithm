@@ -164,6 +164,17 @@ class LinkedList():
         
         self.head = prev #set the new head to last node (curr = None when we break out of while loop)
 
-        
+    def reverse_recursion(self):
+        def _reverse(cur, prev):
+            if not cur: #breaking condition
+                return None
+            
+            next = cur.next
+            cur.next = prev
+            prev = cur
+            cur = next
 
+            return _reverse(cur, prev) #recursive call
         
+        #need to update new head
+        self.head = _reverse(cur = self.head, prev = None)
