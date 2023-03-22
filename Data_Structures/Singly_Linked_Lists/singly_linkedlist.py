@@ -219,5 +219,12 @@ class LinkedList():
         
         self.head = new_head
         return self.head
+    
+    #remove duplicate
+
+    #count occurance iterative
+
+    #count occurance recursive
 
 
+ 
