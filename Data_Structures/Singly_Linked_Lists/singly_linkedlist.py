@@ -235,3 +235,24 @@ class LinkedList():
                 prev = cur
             cur = prev.next #increment 
 
+
+    #count occurance iterative
+    def count_occurences_iterative(self, key):
+        cur = self.head
+        count = 0
+        while cur:
+            if cur.data == key:
+                count += 1
+            cur = cur.next
+        return count
+    
+    #count occurance recursive
+    def count_occurences_recursive(self, node, key):
+        if node is None:
+            return 0
+        if node.data == key:
+            return 1 + self.count_occurences_recursive(node.next, key) #if matches, add 1 
+        else: #don't match
+            return self.count_occurences_recursive(node.next, key)
+        
+    
