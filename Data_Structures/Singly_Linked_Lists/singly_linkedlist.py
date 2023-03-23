@@ -115,7 +115,7 @@ class LinkedList():
     def len_recursion(self, node): #pass in the node you want to start counting from
         if node is None: #breaking condition (end of linkedlist)
             return 0
-        return 1 + len_recursion(node.next) #counting next node
+        return 1 + self.len_recursion(node.next) #counting next node
 
     #swap node
     def swap_nodes(self, key1, key2):
@@ -221,10 +221,17 @@ class LinkedList():
         return self.head
     
     #remove duplicate
+    def remove_duplicates(self):
+        prev = None
+        cur = self.head
+        duplicate = set() #can also do it with dict syntax: duplicate[cur.data] = 1
+        while cur:
+            if cur.data in duplicate: #node is duplicate
+                prev.next = cur.next #skip cur node
+                # don't need to increment prev since it will be the prev of next node
+                cur = None #delete this node
+            else: #node is not duplicated
+                duplicate.add(cur.data)
+                prev = cur
+            cur = prev.next #increment 
 
-    #count occurance iterative
-
-    #count occurance recursive
-
-
- 
