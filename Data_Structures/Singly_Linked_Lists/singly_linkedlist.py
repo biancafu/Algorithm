@@ -267,4 +267,32 @@ class LinkedList():
         if cur is None:
             return
     #rotate
-    
+    def rotate(self, pivot):
+        #need  at least 2 nodes in list to rotate (1 node can't rotate)
+        if self.head and self.head.next:
+            p = self.head
+            q = self.head
+            count = 0
+            prev = None
+
+        while p and count < pivot:
+            prev = p
+            p = p.next #increment p and q until pivot point
+            q = q.next
+            count += 1
+        
+        p = prev #set p back to pivot point
+        #continue q pointer to the end of list
+        while q:
+            prev = q
+            q = q.next
+        q = prev #q is None and prev is last node when loop break, we need to set q = prev so q is pointing to last node
+        
+        #rn p is pointing at pivot, q is pointing at end of list
+        #point q to the head of list
+        q.next = self.head
+        #make p.next to the head of list (so p becomes end of list)
+        self.head = p.next
+        #point p to None (so p becomes end of list)
+        p.next = None
+
