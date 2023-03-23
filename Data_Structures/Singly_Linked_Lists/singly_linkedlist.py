@@ -255,4 +255,16 @@ class LinkedList():
         else: #don't match
             return self.count_occurences_recursive(node.next, key)
         
+    #nth to last
+    def nth_to_last(self, n):
+        len = self.len_recursion(self.head) #length of linkedlist
+        cur = self.head
+        while cur:
+            if len == n:
+                return cur.data
+            len -= 1
+            cur = cur.next
+        if cur is None:
+            return
+    #rotate
     
