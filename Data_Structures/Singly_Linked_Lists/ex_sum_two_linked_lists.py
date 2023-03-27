@@ -3,14 +3,35 @@ from singly_linkedlist import LinkList
 def sum_two_lists(self, llist):
     p = self.head
     q = llist.head
-
-    if not p:
-        return q
-    if not q:
-        return p
-    
+    carry = 0
+    result = LinkList()
     while p or q:
-        if 
+        if p:
+            i = p.data
+        else:
+            i = 0
+        
+        if q:
+            j = q.data
+        else:
+            j = 0
+        sum = i + j + carry
+
+        if sum >= 10:
+            carry = sum // 10 #should always be 1
+            sum %= 10
+        else:
+            carry = 0 #resetting carry from previous run
+        
+        #increment to next node
+        if p:
+            p = p.next
+        if q:
+            q = q.next
+        result.append(sum)
+    
+    return result
+
 
 
 
