@@ -45,7 +45,7 @@ class CircularLinkedList():
         #case1: linkedlist empty
         if not cur:
             new_node.next = new_node
-            
+
         #case 2:
         else:
             while cur.next != self.head:
@@ -54,17 +54,58 @@ class CircularLinkedList():
         self.head = new_node
 
 
+    #remove
+    def remove(self, key):
+        #2 cases: removing head or removing other nodes in list
+        if self.head:
+            #case 1: removing head
+            if self.head.data == key:
+                #subcase 1:only has 1 node in the list
+                if self.head.next == self.head:
+                    self.head = None
+                    return
+                #subcase 2:has more than 1 node in list
+                cur = self.head
+                while cur.next != self.head:
+                    cur = cur.next
+                cur.next = self.head.next #loop back to new head
+                self.head = self.head.next #increment head to new head
 
+            #case 2: removing other nodes in list
+            else:
+                # cur = self.head
+                # prev = None
+                # while cur.next != self.head:
+                #     #increment right away since we already checked head
+                #     prev = cur
+                #     cur = cur.next
 
-
-
-        
+                #     if cur.data == key:
+                #         prev.next = cur.next #skipping cur
+                #         cur = None
+                #         return
+                
+                #maybe this is a better way? this one will remove all the node with the key (not just one) from linkedlist
+                cur = self.head.next #skip first node since we checked already
+                prev = self.head
+                while cur != self.head:
+                    if cur.data == key:
+                        prev.next = cur.next
+                        cur = None
+                    else:
+                        prev = cur
+                    cur = prev.next
 
 
 
 cllist = CircularLinkedList()
+cllist.append("A")
+cllist.append("B")
+cllist.append("C")
 cllist.append("C")
 cllist.append("D")
-# cllist.prepend("B")
-# cllist.prepend("A")
+
+
+cllist.remove("A")
+cllist.remove("C")
 cllist.print_list()
