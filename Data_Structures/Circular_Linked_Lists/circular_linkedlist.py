@@ -107,3 +107,40 @@ class CircularLinkedList():
                 break
         return count
     
+    #split list
+    def split_list(self):
+        if not self.head or self.head.next == self.head:
+            return
+        
+        cur = self.head
+        prev = None
+        mid = self.length() // 2
+        count = 0 #self.head will be at 0
+
+        #pass first half of the list
+        while cur and count < mid:
+            prev = cur
+            count += 1
+            cur = cur.next
+        prev.next = self.head #loop back to head mid point to cut the list in half
+
+        secondhalf = CircularLinkedList() #create an empty circular linkedlist
+        while cur.next != self.head: #will break out of loop on last node
+            secondhalf.append(cur.data)
+            cur = cur.next
+        #last node needs to be append as well
+        secondhalf.append(cur.data)
+        self.print_list()
+        print("\n")
+        secondhalf.print_list()
+
+
+cllist = CircularLinkedList()
+cllist.append("A")
+cllist.append("B")
+cllist.append("C")
+cllist.append("D")
+cllist.append("E")
+cllist.append("F")
+
+cllist.split_list()
