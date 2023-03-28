@@ -96,16 +96,14 @@ class CircularLinkedList():
                         prev = cur
                     cur = prev.next
 
+    def length(self):
+        count = 0
+        cur = self.head
+        while cur: #if empty list, count = 0, won't run while loop
+            count += 1
+            cur = cur.next
 
-
-cllist = CircularLinkedList()
-cllist.append("A")
-cllist.append("B")
-cllist.append("C")
-cllist.append("C")
-cllist.append("D")
-
-
-cllist.remove("A")
-cllist.remove("C")
-cllist.print_list()
+            if cur == self.head:
+                break
+        return count
+    
