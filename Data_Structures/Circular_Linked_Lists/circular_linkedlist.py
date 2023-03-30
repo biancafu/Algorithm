@@ -134,13 +134,40 @@ class CircularLinkedList():
         print("\n")
         secondhalf.print_list()
 
+    #for josephus problem
+    def remove_node(self, node):
+        if self.head == node: #removing head of list
+            if self.head.next == self.head: #if head is only node in list
+                self.head = None
+                return
+            #more than 1 node in list
+            cur = self.head
+            while cur.next != self.head:
+                cur = cur.next
+            #cur = last node of list, point it to the new head (skip old head)
+            cur.next = self.head.next
+            self.head = self.head.next #appoint new head
 
-cllist = CircularLinkedList()
-cllist.append("A")
-cllist.append("B")
-cllist.append("C")
-cllist.append("D")
-cllist.append("E")
-cllist.append("F")
+        #removing other nodes in list (not head)
+        else:
+            cur = self.head.next
+            prev = self.head
+            while cur != self.head:
+                if cur == node:
+                    prev.next = cur.next
+                else:
+                    prev = cur
+                cur = cur.next
+    def josephus_circle(self, step):
+        #we want to remove the node at the step until there is only one node left
+        cur = self.head
+        while self.head.next != self.head:
+            count = 1
+            while count != step:
+                count += 1
+                cur = cur.next
+            print("KILL:" + str(cur.data))
+            self.remove_node(cur)
+            cur = cur.next
+            
 
-cllist.split_list()
