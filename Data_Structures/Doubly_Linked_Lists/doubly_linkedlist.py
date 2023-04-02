@@ -24,4 +24,11 @@ class DoublyLinkedList():
             cur.next = new_node
             new_node.prev = cur
             
-
+    def print_list(self):
+        cur = self.head
+        while cur:
+            print(cur.data)
+            cur = cur.next
+    
+    #prepend
+    
