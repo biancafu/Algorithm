@@ -77,6 +77,40 @@ class DoublyLinkedList():
                     return
             cur = cur.next
 
-
-                    
+    def delete(self, key):
+        #4 cases: deleteing head (only 1 node in list), deleting head (with other nodes in list), deleting middle nodes, deleting last not
+        cur = self.head
+        while cur:
+            if cur.data == key:
+                if cur == self.head:
+                    #case 1: deleting head (the only node in list)
+                    if not cur.next:
+                        cur = None
+                        self.head = None
+                        return
+                    #case 2: deleting head (with other nodes in list)
+                    else:
+                        next = cur.next
+                        next.prev = None
+                        cur.next = None
+                        cur = None
+                        self.head = next
+                        return
+                #case 3: deleting last node
+                elif not cur.next:
+                    cur.prev.next = None
+                    cur.prev = None
+                    cur = None
+                    return
+                #case 4: other nodes
+                else:
+                    prev = cur.prev
+                    next = cur.next
+                    prev.next = next
+                    next.prev = prev
+                    cur.next = None  #dunno if we need this
+                    cur.prev = None #dunno if we need this
+                    cur = None
+                    return
+            cur = cur.next
 
