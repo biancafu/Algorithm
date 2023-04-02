@@ -31,4 +31,14 @@ class DoublyLinkedList():
             cur = cur.next
     
     #prepend
-    
+    def prepend(self, data):
+        #2 cases: empty list or non empty list
+        if not self.head: #case 1: empty list
+            self.head = Node(data)
+        else:
+            new_node = Node(data)
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+
+
