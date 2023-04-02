@@ -43,22 +43,40 @@ class DoublyLinkedList():
 
     def add_node_after(self, key, data):
         #2 cases: node.next is null (last node), node.next is not null (other nodes)
-        if self.head:
-            cur = self.head
-            new_node = Node(data)
-            while cur:
-                if cur.data == key:
-                    if not cur.next: #case 1: last node
-                        self.append(data)
-                        return
-                    else: #case 2: other nodes
-                        next = cur.next
-                        cur.next = new_node
-                        new_node.prev = cur
-                        new_node.next = next
-                        next.prev = new_node
-                        return
-                cur = cur.next
+        cur = self.head
+        new_node = Node(data)
+        while cur:
+            if cur.data == key:
+                if not cur.next: #case 1: last node
+                    self.append(data)
+                    return
+                else: #case 2: other nodes
+                    next = cur.next
+                    cur.next = new_node
+                    new_node.prev = cur
+                    new_node.next = next
+                    next.prev = new_node
+                    return
+            cur = cur.next
         
-    
+    def add_node_before(self, key, data):
+        #2 cases: add node before 1) head, 2) all other nodes
+        cur = self.head
+        while cur:
+            if cur.data == key: 
+                if cur == self.head: #case 1
+                    self.prepend(data)
+                    return
+                else: #case 2
+                    new_node = Node(data)
+                    prev = cur.prev
+                    new_node.prev = prev
+                    new_node.next = cur
+                    prev.next = new_node
+                    cur.prev = new_node
+                    return
+            cur = cur.next
+
+
+                    
 
