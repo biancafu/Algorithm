@@ -113,7 +113,7 @@ class DoublyLinkedList():
                     cur = None
                     return
             cur = cur.next
-            
+
     #copy and paste for exercise remove dupliates (deleting node passed in function)
     def delete_node(self, node):
         cur = self.head
@@ -168,3 +168,21 @@ class DoublyLinkedList():
             self.head = prev.prev #its prev.prev not .next because we are looking for last node(technically first node in the reverse list) 
         
     
+    def pairs_with_sum(self, sum_val):
+        pairs = []
+        cur = self.head
+
+        while cur:
+            target = cur.next
+            target_val = sum_val - cur.data
+            while target:
+                if target.data == target_val:
+                    break
+                target = target.next
+            
+            if target: #only record it if we find a pair
+                pairs.append(f"({cur.data},{target.data})")
+            
+            cur = cur.next
+        
+        return pairs
