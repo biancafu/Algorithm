@@ -114,3 +114,16 @@ class DoublyLinkedList():
                     return
             cur = cur.next
 
+    def reverse(self):
+        cur = self.head
+        while cur:
+            next = cur.next
+            prev = cur.prev
+            cur.next = prev
+            cur.prev = next
+            cur = next
+        
+        if prev:
+            self.head = prev.prev #its prev.prev not .next because we are looking for last node(technically first node in the reverse list) 
+        
+    
