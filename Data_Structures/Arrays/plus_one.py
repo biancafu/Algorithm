@@ -22,8 +22,25 @@ def plus_one(arr):
         arr.insert(0, carry)
     return arr
 
+#can do it this way cuz it adds one at a time only
+def plus_one_solution(arr):
+    arr[-1] += 1
+    for i in (range(len(arr) - 1, 0, -1)): #or reversed(range(1, len(arr)))
+        if arr[i] != 10: #no need to continue loop through
+            break
+
+        arr[i-1] += 1
+        arr[i] = 0
+    
+    if arr[0] == 10:
+        arr[0] = 1
+        arr.append(0)
+    
+    return arr
+
 A1 = [1, 4, 9]
 A2 = [9, 9, 9]
-a = plus_one(A1)
-print(a)
-print(plus_one(A2))
+# print(plus_one(A1))
+# print(plus_one(A2))
+print(plus_one_solution(A1))
+print(plus_one_solution(A2))
