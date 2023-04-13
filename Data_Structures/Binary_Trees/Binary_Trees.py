@@ -3,6 +3,29 @@ class Node():
         self.value = value
         self.left = None
         self.right = None
+
+class Stack():
+    #stack is LIFO
+    #end of list will be the top of stack
+    def __init__(self):
+        self.items = [] #create an empty list as our stack
+    
+    def push(self, item):
+        self.items.append(item) #append item to the end of list which is top of stack
+    
+    def pop(self):
+        return self.items.pop() #pop the last item of list which is first item of stack
+    
+    def is_empty(self): 
+        return self.items == []
+    
+    def peek(self): #returns the first item of stack
+        if not self.is_empty():
+            return self.items[-1]
+    
+    def get_stack(self):
+        return self.items
+    
 class Queue(): #FIFO (start is the end of list)
     def __init__(self) -> None:
         self.items = []
@@ -59,22 +82,6 @@ class BinaryTree():
             traversal = self.postorder_print(start.right, traversal)
             traversal += (str(start.value) + "-")   
         return traversal
-
-    #helper function
-    def print_tree(self, traversal_type):
-            if traversal_type == "preorder":
-                return self.preorder_print(tree.root, "")
-            elif traversal_type == "inorder":
-                return self.inorder_print(tree.root, "")
-            elif traversal_type == "postorder":
-                return self.postorder_print(tree.root, "")
-            elif traversal_type == "levelorder":
-                return self.levelorder_print(tree.root)
-            
-
-            else:
-                print("Traversal type " + str(traversal_type) + " is not supported.")
-                return False
     
     #BFS
     #picture: 1 2 3 4 5
@@ -93,7 +100,53 @@ class BinaryTree():
             if node.right:
                 queue.enqueue(node.right)
         return traversal
+    
+    #picture 4 5 2 3 1
+    def reverse_levelorder_print(self, start):
+        if not start:
+            return
+        queue = Queue()
+        stack = []
+        queue.enqueue(start)
+        traversal = ""
 
+        while len(queue) > 0:
+            #same step as levelorder for queue but putting in stack instead of traversal
+            node = queue.dequeue()
+            stack.append(node)
+
+            # have to get right then left for reverse 
+            if node.right:
+                queue.enqueue(node.right)
+            if node.left:
+                queue.enqueue(node.left)
+
+        while len(stack) > 0:
+            traversal += str(stack.pop().value) + "-"
+        
+        return traversal
+            
+            
+
+
+
+
+    #helper function
+    def print_tree(self, traversal_type):
+            if traversal_type == "preorder":
+                return self.preorder_print(tree.root, "")
+            elif traversal_type == "inorder":
+                return self.inorder_print(tree.root, "")
+            elif traversal_type == "postorder":
+                return self.postorder_print(tree.root, "")
+            elif traversal_type == "levelorder":
+                return self.levelorder_print(tree.root)
+            elif traversal_type == "reverse_levelorder":
+                return self.reverse_levelorder_print(tree.root)
+
+            else:
+                print("Traversal type " + str(traversal_type) + " is not supported.")
+                return False
 
 tree = BinaryTree(1)
 tree.root.left = Node(2)
@@ -101,4 +154,4 @@ tree.root.right = Node(3)
 tree.root.left.left = Node(4)
 tree.root.left.right = Node(5)
 
-print(tree.print_tree("levelorder"))
+print(tree.print_tree("reverse_levelorder"))
