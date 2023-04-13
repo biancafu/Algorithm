@@ -28,4 +28,11 @@ def inorder_print(self, start, traversal):
     traversal += str(start.value) + "-"
     traversal = self.inorder_print(start.right, traversal)
     return traversal
-#post-order
+#post-order: left -> right -> data
+def postorder_print(self, start, traversal):
+    if not start:
+        return 
+    traversal = self.postorder_print(start.left, traversal)
+    traversal = self.postorder_print(start.right, traversal)
+    traversal += str(start.value) + "-"
+    return traversal
