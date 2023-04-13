@@ -15,11 +15,17 @@ class BinaryTree():
 def preorder_print(self, start, traversal):
     if not start:
         return
-    traversal += str(start) + "-" #updated current traversal
+    traversal += str(start.value) + "-" #updated current traversal
     traversal = self.preorder_print(start.left, traversal) #call function (recursion) with new traversal
     traversal = self.preorder_print(start.right, traversal) #call function (recursion) with new traversal (after left was traversed)
     return traversal
     
 #in-order: left -> data -> right
-
+def inorder_print(self, start, traversal):
+    if not start:
+        return
+    traversal = self.inorder_print(start.left, traversal)
+    traversal += str(start.value) + "-"
+    traversal = self.inorder_print(start.right, traversal)
+    return traversal
 #post-order
