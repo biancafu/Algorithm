@@ -3,6 +3,29 @@ class Node():
         self.value = value
         self.left = None
         self.right = None
+class Queue(): #FIFO (start is the end of list)
+    def __init__(self) -> None:
+        self.items = []
+    
+    def enqueue(self, item):
+        self.items.insert(0, item)
+    
+    def dequeue(self):
+        if not self.is_empty():
+            return self.items.pop()
+    
+    def is_empty(self):
+        return len(self.items) == 0
+    
+    def peek(self):
+        if len(self.items) > 0:
+            return self.items[-1]
+        
+    def __len__(self):
+        return self.size()
+
+    def size(self):
+        return len(self.items)
 
 class BinaryTree():
     def __init__(self, root) -> None:
@@ -20,6 +43,7 @@ class BinaryTree():
         return traversal
         
     #in-order: left -> data -> right
+    #picture: A B C D E F G H I
     def inorder_print(self, start, traversal):
         if start:
             traversal = self.inorder_print(start.left, traversal)
@@ -28,6 +52,7 @@ class BinaryTree():
         return traversal
 
     #post-order: left -> right -> data
+    #picture: A C E D B H I G F
     def postorder_print(self, start, traversal):
         if start: 
             traversal = self.postorder_print(start.left, traversal)
@@ -43,10 +68,31 @@ class BinaryTree():
                 return self.inorder_print(tree.root, "")
             elif traversal_type == "postorder":
                 return self.postorder_print(tree.root, "")
+            elif traversal_type == "levelorder":
+                return self.levelorder_print(tree.root)
+            
 
             else:
                 print("Traversal type " + str(traversal_type) + " is not supported.")
                 return False
+    
+    #BFS
+    #picture: 1 2 3 4 5
+    def levelorder_print(self, start):
+        if not start:
+            return
+        queue = Queue()
+        queue.enqueue(start)
+        traversal = ""
+
+        while len(queue) > 0:
+            node = queue.dequeue()
+            traversal += str(node.value) + "-"
+            if node.left:
+                queue.enqueue(node.left)
+            if node.right:
+                queue.enqueue(node.right)
+        return traversal
 
 
 tree = BinaryTree(1)
@@ -54,9 +100,5 @@ tree.root.left = Node(2)
 tree.root.right = Node(3)
 tree.root.left.left = Node(4)
 tree.root.left.right = Node(5)
-tree.root.right.left = Node(6)
-tree.root.right.right = Node(7)
 
-#print(tree.print_tree("preorder"))
-#print(tree.print_tree("inorder"))
-print(tree.print_tree("postorder"))
+print(tree.print_tree("levelorder"))
