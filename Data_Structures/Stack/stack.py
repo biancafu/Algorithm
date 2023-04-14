@@ -8,10 +8,11 @@ class Stack():
         self.items.append(item) #append item to the end of list which is top of stack
     
     def pop(self):
-        return self.items.pop() #pop the last item of list which is first item of stack
+        if not self.is_empty():
+            return self.items.pop() #pop the last item of list which is first item of stack
     
     def is_empty(self): 
-        return self.items == []
+        return len(self.items) == 0
     
     def peek(self): #returns the first item of stack
         if not self.is_empty():

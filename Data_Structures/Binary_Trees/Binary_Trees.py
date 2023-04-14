@@ -4,27 +4,35 @@ class Node():
         self.left = None
         self.right = None
 
-class Stack():
-    #stack is LIFO
-    #end of list will be the top of stack
+class Stack(object):
     def __init__(self):
-        self.items = [] #create an empty list as our stack
-    
+        self.items = []
+
+    def __len__(self):
+        return self.size()
+     
+    def size(self):
+        return len(self.items)
+
     def push(self, item):
-        self.items.append(item) #append item to the end of list which is top of stack
-    
-    def pop(self):
-        return self.items.pop() #pop the last item of list which is first item of stack
-    
-    def is_empty(self): 
-        return self.items == []
-    
-    def peek(self): #returns the first item of stack
+        self.items.append(item)
+
+    def pop(self):  
+        if not self.is_empty():
+            return self.items.pop()
+
+    def peek(self):
         if not self.is_empty():
             return self.items[-1]
-    
-    def get_stack(self):
-        return self.items
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def __str__(self):
+        s = ""
+        for i in range(len(self.items)):
+            s += str(self.items[i].value) + "-"
+        return s
     
 class Queue(): #FIFO (start is the end of list)
     def __init__(self) -> None:
@@ -135,7 +143,27 @@ class BinaryTree():
 
         return 1 + max(left, right)
 
+    def size_(self, node):
+        if node is None:
+            return 0
+        return 1 + self.size_(node.left) + self.size_(node.right)
 
+    def size(self):
+        if self.root is None:
+            return 0
+
+        stack = Stack()
+        stack.push(self.root)
+        size = 1
+        while stack:
+            node = stack.pop()
+            if node.left:
+                size += 1
+                stack.push(node.left)
+            if node.right:
+                size += 1
+                stack.push(node.right)
+        return size
 
     #helper function
     def print_tree(self, traversal_type):
@@ -153,11 +181,22 @@ class BinaryTree():
             else:
                 print("Traversal type " + str(traversal_type) + " is not supported.")
                 return False
+    
 
+
+# Calculate size of binary tree:
+#     1
+#    / \
+#   2  3
+#  / \
+# 4  5
+# 
+# 
 tree = BinaryTree(1)
 tree.root.left = Node(2)
 tree.root.right = Node(3)
 tree.root.left.left = Node(4)
 tree.root.left.right = Node(5)
 
-print(tree.height(tree.root))
+print(tree.size())
+print(tree.size_(tree.root))
