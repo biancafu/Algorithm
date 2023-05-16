@@ -55,3 +55,22 @@ def find(self, data, cur_node = None):
             return False #need this
         else:
             return None
+        
+def is_bst_satisfied(self):
+    def helper(node, low = float('-inf'), high = float('inf')):
+        if not node: #no nodes means bst is satisfied
+            return True
+
+        val = node.data
+        #has to be within the range
+        if val <= low or val >= high:
+            return False
+        
+        if not helper(node.right, val, high): #node.right has to be greater than val, so val becomes the lower bound
+            return False
+        if not helper(node.left, low, high): #node.left has to be smaller than val, so val becomes the upper bound
+            return False
+        return True
+    
+    return helper(self.root)
+        
