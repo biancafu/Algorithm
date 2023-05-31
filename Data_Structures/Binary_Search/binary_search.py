@@ -22,3 +22,16 @@ def binary_search(data, target):
     return False # no match
 
 
+#recursive:
+#treat recursive like a loop, it will never end unless you set the breaking condition
+def binary_search_recursive(data, target, low, high):
+    if low > high: #breaking condition
+        return False
+    else:
+        mid = (low + high) // 2
+        if data[mid] == target:
+            return True
+        elif data[mid] > target:
+            return binary_search_recursive(data, target, mid + 1, high)
+        else:
+            return binary_search_recursive(data, target, low, mid - 1)
