@@ -1,4 +1,5 @@
 #https://leetcode.com/problems/contains-duplicate/description/
+#5 min
 
 class Solution(object): #O(n)
     def containsDuplicate(self, nums):
