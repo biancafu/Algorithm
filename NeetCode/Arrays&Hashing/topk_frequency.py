@@ -1,5 +1,25 @@
 class Solution(object):
-    def topKFrequent(self, nums, k): #O(n^2) because of max?
+    def topKFrequentNeetCode(self, nums, k): #Neetcode solution, O(n) using bucket sort
+        hashmap = dict()
+        for num in nums:
+            if num not in hashmap:
+                hashmap[num] = 0
+            hashmap[num] += 1
+        #bucket sort
+        #for answers not unique
+        frequency = [[] for i in range(len(nums) + 1)] #k + 1 because 0 frequency won't count
+        for key, count in hashmap.items():
+            frequency[count].append(key) 
+
+        result = []
+        for i in range(len(frequency)-1, 0, -1):
+            for n in frequency[i]:
+                result.append(n)
+                if len(result) == k:
+                    return result
+    
+    #not a good solution, rather sort O(nlogn)
+    def topKFrequent(self, nums, k): #O(n^2) because of max and index??
         #since k is gauranteed to be in the range of unique number, we don't have to check that
         #gauranteed answer is unique meaning we don't have to consider 2 numbers having same occurence?
         #use hashmap to record the frequency of each number
@@ -19,3 +39,4 @@ class Solution(object):
             occurrence.pop(index) #remove by key
         
         return result
+    
