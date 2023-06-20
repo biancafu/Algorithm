@@ -17,7 +17,12 @@ class Solution(object):
                 result.append(n)
                 if len(result) == k:
                     return result
-    
+        #even though we have a nested for loop, it is O(n) complexity
+        #this is because we are only running n+n times (2n = n)
+        #since we know that the nested array will only add up to the length of nums given
+        
+
+
     #not a good solution, rather sort O(nlogn)
     def topKFrequent(self, nums, k): #O(n^2) because of max and index??
         #since k is gauranteed to be in the range of unique number, we don't have to check that
