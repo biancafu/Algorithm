@@ -1,12 +1,8 @@
 #https://leetcode.com/problems/longest-consecutive-sequence/description/
 #find the longest consecutive in the list of number given
 class Solution(object):
+    #go through the numbers, if we the number is the furthest to the left, see how long it can go consecutively
     def longestConsecutive(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        #remove duplicate
         numbers = set(nums)
         max_length = 0
         for n in numbers:
