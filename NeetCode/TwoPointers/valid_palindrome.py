@@ -3,6 +3,7 @@ class Solution(object):
     #we can check if the character is alnum, if not, increment.
     #if both are alnum, then we can compare. and remember to INCREMENT if it passes the comparison
     
+    #10 min with researching (on paper) but had errors
     def isPalindrome_better(self, s): #O(n)
         #check if palidrome
         start = 0
