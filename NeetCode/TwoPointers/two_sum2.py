@@ -1,4 +1,5 @@
 class Solution(object):
+    #5min 
     def twoSum(self, numbers, target):
         start = 0
         end = len(numbers) - 1
