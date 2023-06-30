@@ -1,3 +1,5 @@
+#https://leetcode.com/problems/trapping-rain-water/description/
+
 def trap_neetcode(height):
     #different incrementation
     l, r = 0, len(height) - 1 
