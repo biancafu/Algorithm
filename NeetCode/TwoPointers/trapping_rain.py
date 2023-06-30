@@ -1,4 +1,13 @@
-def trap( height):
+def trap_faster(height):
+     #to calculate the trapped rain area use logic:
+    #min(left max height, right max height) - current height
+    #shift the lower max height side
+    #we only know one side max of the current position, so how come this works?
+    #because we want the min of the max, so we just need the smaller side
+    l, r = 0, len(height) - 1
+
+    pass
+def trap(height):
     #slower solution
     #O(n) = O(3n)
     leftmax = []
