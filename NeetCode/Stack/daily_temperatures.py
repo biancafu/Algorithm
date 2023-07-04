@@ -1,6 +1,10 @@
 #25 min all by myself!! O(n)
 #the same solution as neetcode!
-
+'''
+we initialize the result array with zeros, so we only edit the ones we find a match (higher than the temperature recorded)
+this would work if we store in the stack both the temperature and the index 
+because we would need the index to modify data at the same location for the result array and 
+'''
 def dailyTemperatures(temperatures):
         stack = []
         result = [0] * len(temperatures)
