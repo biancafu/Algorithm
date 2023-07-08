@@ -1,4 +1,35 @@
-#17 min
+#17 min O(logmn) (same logic as neetcode)
+ def searchMatrix_neetcode(self, matrix, target):
+        rleft = 0
+        rright = len(matrix) - 1
+        mid = -1
+        while rleft <= rright:
+            rmid = (rleft + rright) // 2
+            if matrix[rmid][-1] < target:
+                rleft = rmid + 1
+                #last number < target, then it must be somewhere below this row since it is greater than the largest num in row
+            elif matrix[rmid][0] > target:
+                #if first number is still greater than target, means target must be above since smallest number of the row is greater than target
+                rright = rmid - 1
+            else: #when it fits in the row
+                mid = rmid
+                break
+        
+        if mid == -1:
+            return False
+
+        l = 0
+        h = len(matrix[0]) - 1
+        while l <= h:
+            m = (l + h) // 2
+            if matrix[mid][m] < target:
+                l = m + 1
+            elif matrix[mid][m] > target:
+                h = m - 1
+            else:
+                return True
+        return False
+        
 class Solution(object):
     def searchMatrix(self, matrix, target):
 
@@ -29,3 +60,15 @@ class Solution(object):
                 low = mid + 1
             else:
                 high = mid - 1
+
+    #this solutioin can be faster depending on the test case but ultimately, it is O(n^2) time complexity
+    #since if r is in last row, that means we have to go m times and if column is last, we have to go mxn times
+    def searchMatrix_other (self, matrix,target):
+        r, c = 0, len(matrix[0]) - 1
+
+        while r < len(matrix) and c >= 0:
+            if matrix[r][c] < target: r += 1
+            elif matrix[r][c] > target: c -= 1
+            else: return True
+        
+        return False
