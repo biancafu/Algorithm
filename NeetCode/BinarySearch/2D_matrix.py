@@ -1,5 +1,5 @@
 #17 min O(logmn) (same logic as neetcode)
- def searchMatrix_neetcode(self, matrix, target):
+def searchMatrix_neetcode(self, matrix, target):
         rleft = 0
         rright = len(matrix) - 1
         mid = -1
