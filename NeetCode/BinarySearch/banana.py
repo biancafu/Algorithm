@@ -21,6 +21,9 @@ class Solution(object):
 
                 '''
                 can also do high = speed - 1, but the while condition will become low <= high, however this is slower than the above one
+                this worked because after you do high = speed - 1, you can go back higher by having low speed + 1
+                with the case ([30,11,23,4,20], 6), the last run was low = 22, high = 22 but the answer was supposed to be 23
+                this is because  when low == high == 22, it ran and hours > h, therefore low = 22 + 1 which give us the correct answer in the end
                 '''
         return low
     #Neetcode solution
@@ -42,8 +45,8 @@ class Solution(object):
     
     
                 
-
+# 1 2 3 4 5 6 7 8 9 10 11
         
 s =  Solution()
-a = s.minEatingSpeed_faster([3,6,7,11], 8)
+a = s.minEatingSpeed_faster([30,11,23,4,20], 6)
 print(a)
