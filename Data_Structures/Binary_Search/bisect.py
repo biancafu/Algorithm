@@ -1,4 +1,4 @@
-import bisect
+from bisect import *
 
 # This sorted list will be used throughout this lesson
 # to showcase the functionality of the "bisect" method.
@@ -10,10 +10,10 @@ print(bisect.bisect_left(A, -10))
 # First occurrence of 285 is at index 6
 print(bisect.bisect_left(A, 285))
 
-# Index position to right of -10 is 2.
+# # Index position to right of -10 is 2.
 print(bisect.bisect_right(A, 5)) 
 
-# Index position after last occurrence of 285 is 9.
+# # Index position after last occurrence of 285 is 9.
 print(bisect.bisect_right(A, 285))
 
 # Index position to right of -10 is 2. (Same as bisect_right)
