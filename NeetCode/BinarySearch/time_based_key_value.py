@@ -1,4 +1,11 @@
 from collections import defaultdict
+"""
+~45 min?
+was unable to solve with correct leetcode solution 
+BUT it seemed like there was some issue with leetcode compiler since it worked on vscode (the wrong case showed on leetcode)
+overall, I understood the question properly and executed it in the right direction
+it is not a hard question to solve, I should be able to finish it sooner without difficulty
+"""
 class TimeMap(object):
 
     def __init__(self):
@@ -45,10 +52,56 @@ class TimeMap(object):
 
         return res
 
-#[null,null,null,"herqmazp",null,"herqmazp",null,null,"dgpguflin",null,"dgpguflin",null,"lvrexco",null,
-# "dgpguflin",null,"lvrexco","vjfhio","vjfhio","wxqixmxs","vjfhio","vjfhio",null,null,null,"wxqixmxs","qrkihrb",
-# null,null,"iztpo",null]
+class TimeMap_NeetCode(object):
+#Neetcode uses a list instead of dict inside of the mapping
+    def __init__(self):
+        self.mapping = defaultdict(list)
+
+    def set(self, key, value, timestamp):
+        """
+        :type key: str
+        :type value: str
+        :type timestamp: int
+        :rtype: None
+        """
+        self.mapping[key].append([value, timestamp])
+
         
+        
+    def get(self, key, timestamp):
+        """
+        :type key: str
+        :type timestamp: int
+        :rtype: str
+       """
+        if not self.mapping[key]:
+            return ""
+
+        timestamps = self.mapping[key]
+        low = 0
+        high = len(timestamps) - 1
+        res=""
+        while low <= high:
+            mid = (low + (high)) // 2
+            if timestamps[mid][1] <= timestamp:
+                res = timestamps[low][0]
+                low = mid + 1
+            else:
+                high = mid - 1
+        return res
+
+        #this reduces the memory used, since we are returning when the time == timestamps and not continuing the search
+        # while low <= high:
+        #     mid = (low + (high)) // 2
+        #     if timestamps[mid][1] == timestamp:
+        #         return timestamps[low][0]
+        #     elif timestamps[mid][1] < timestamp:
+        #         res = timestamps[low][0]
+        #         low = mid + 1
+        #     else:
+        #         high = mid - 1
+
+        # return res
 """
 Timemap = {
     key: {time: value}
