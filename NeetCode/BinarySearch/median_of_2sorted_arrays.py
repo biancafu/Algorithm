@@ -1,9 +1,11 @@
 class Solution(object):
     def findMedianSortedArrays(self, nums1, nums2):
         """
-        :type nums1: List[int]
-        :type nums2: List[int]
-        :rtype: float
+        the idea is that we split the "merged array into 2 halves" like how we do binary search, to find the left half,
+        we use binary search on one array (the shorter one) then fill up the gaps with the other array
+        in this way, we will always have the right amount of numbers for the half, so then we we check if the half is valid (is there a smaller number that can be added from another array)
+        to compare, we check if the right element of both array is smaller than the other left element of the array (right and left to mid element)
+        we increment the binary search accordingly
         """
         
         A, B = nums1, nums2
