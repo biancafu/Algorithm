@@ -1,3 +1,4 @@
+#didn't solve it first time, solved it second time ~ 30 min
 #faster than 99% and memory 95% well !
 #https://leetcode.com/problems/permutation-in-string/submissions/
 def checkInclusion(s1, s2):
