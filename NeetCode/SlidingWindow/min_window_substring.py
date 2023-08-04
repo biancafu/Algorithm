@@ -15,6 +15,10 @@ def minWindow(s, t):
 #when checklist[char] == seen[char]: we update count (+= 1)
 #when match == count: we update shortest length (min) then we do a while loop to increment left counter until count < match where we find a char in t
 
+#we will create 2 dict: 1 is the one that stores the number of characters we have from t, the other is to keep track of the current characters from s
+#we will have 2 numbers: 1 is the number of matches we need to satisfy the substring, 2 is the counter for how many number of matches we currently have
+#when an amount of character the window has from s is matching the ones required by t, we will increase the count number
+#when match == count, this means we have all characters to form a substring
     checklist, seen = {}, {}
     
     for char in t:
