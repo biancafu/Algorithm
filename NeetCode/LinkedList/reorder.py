@@ -7,6 +7,15 @@ class ListNode(object):
         self.val = val
         self.next = next
 
+#my solution is similar to neetcode, but the way i reorder the two list at the very end is different
+#for me, I switched up leftpointer and rightpointer every iteration so that each iteration we are reordering 1 node at a time
+#for neetcode, he did 2 nodes at a time, he created two temp variable (i created 1)
+#this means that he reorders it faster (even better memory maybe becuz i used count for length and he did fast&slow pointer)
+
+#for the while loop condition, for me since Im switching the left right pointer every iteration, I said while leftpointer and it eventually went to None
+#but for neetcode, if i do while leftpointer, it goes out of range for right pointer and if i do while rightpointer, it becomes a circle linkedlisit 
+#since the left pointer is not pointing to None
+#this is why he had his left pointer pointing to None (I didn't do this becuz i used counter for length)
 def reorderList(head):
     """
     :type head: ListNode
@@ -47,7 +56,40 @@ def reorderList(head):
     
     return head
 
+#this is faster: 94%, the memory is around the same: 22%
+def reorderList_neetcode(head):
+    fast, slow = head, head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+    #this will stop when slow is pointing to the middle
+
+    #separating the list into two portion left and right
+    right = slow.next
+    slow.next = None
+
+    #reverse right side
+    prev = None
+    while right:
+        next = right.next
+        right.next = prev
+        prev = right
+        right = next
     
+    left, right = head, prev
+    while right:
+        next1, next2 = left.next, right.next
+        left.next = right
+        right.next = next1
+        left = next1
+        right = next2
+    
+    return head
+    
+
+
+        
+        
 
 e = ListNode(4)
 d = ListNode(3, e)
