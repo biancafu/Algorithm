@@ -9,4 +9,12 @@ class Solution(object):
     def maxDepthBFS(self, root):
         pass
     def maxDepth_iterative(self, root):
-        pass
+        stack = [[root, 1]]
+        res = 0
+        while len(stack) != 0:
+            node, length = stack.pop()
+            if node:
+                res = max(length, res)
+                if root.left: stack.append([node.left, length + 1])
+                if root.right: stack.append([node.right, length + 1])
+        return res
