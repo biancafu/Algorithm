@@ -68,7 +68,7 @@ def is_bst_satisfied(self):
         
         if not helper(node.right, val, high): #node.right has to be greater than val, so val becomes the lower bound
             return False
-        if not helper(node.left, low, high): #node.left has to be smaller than val, so val becomes the upper bound
+        if not helper(node.left, low, val): #node.left has to be smaller than val, so val becomes the upper bound
             return False
         return True
     
