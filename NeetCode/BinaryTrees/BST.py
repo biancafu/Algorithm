@@ -2,7 +2,7 @@
 #overcomplicated it by thinking left or right subtree
 #essentially, we just need to set boundaries for left and right side, it can apply to all nodes
 #update the boundaries as we call node.left/node.right
-
+# O(N)
 class Solution(object):
     def isValidBST(self, root):
         """
