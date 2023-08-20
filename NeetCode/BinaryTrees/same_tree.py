@@ -1,3 +1,4 @@
+# 6 min
 class Solution(object):
     def isSameTree(self, p, q):
         if not q and not p:
