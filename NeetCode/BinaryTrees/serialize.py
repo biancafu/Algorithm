@@ -8,7 +8,44 @@ class TreeNode(object):
         self.right = None
 from collections import deque
 
-class Codec:
+#speed 85% memory 15% i think memory is a lot larger using this approach because when serializing, 
+#we are using an array to store instead of string like i did in BFS
+class Codec_DFS:
+
+    def serialize(self, root):
+        output = []
+        #this will append null on every leaf node before it reaches the end
+        def dfs(root):
+            #preorder
+            if not root:
+                output.append('null')
+                return
+            output.append(str(root.val))
+            dfs(root.left)
+            dfs(root.right)
+        dfs(root)
+        return ",".join(output)
+        
+
+    def deserialize(self, data):
+        vals = data.split(',')
+        #use a universal counter
+        self.i = 0 #using this so we dont hv to pass in anything
+        def dfs():
+            curr = vals[self.i]
+            if curr == "null":
+                self.i += 1
+                return None
+            root = TreeNode(int(curr))
+            self.i += 1
+            root.left = dfs()
+            root.right = dfs()
+            return root
+        return dfs()
+
+
+#pretty efficient: 94% speed, 69% memory
+class Codec_BFS:
 
     def serialize(self, root):
         output = ""
