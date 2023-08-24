@@ -12,37 +12,45 @@ class WordDictionary(object):
 
     def addWord(self, word):
         cur = self.trie
+
         for c in word:
             if c not in cur:
                 cur[c] = {}
             cur = cur[c]
         cur["-"] = True
         
+        #lists, dictionsaries, sets are all mutable objects in python, when we say cur = self.trie, since self.trie is a mutable object, when we modify cur (the reference), it changes the original object (self.trie) as well.
 
-    def search(self, word, tree = None):
+    def search(self, word, tree=None):
+        #we can search normally until we encounter a "."
         cur = self.trie if not tree else tree
 
         for i,c in enumerate(word):
-            if c == '.':
+            #special case
+            if c == ".":
                 for key in cur.keys():
-                    if key == "-":
+                    if key == "-": #we are checkign this at the end
                         continue
-                    #if . is in middle
-                    if i < len(word) - 1:
-                        #this will recursively check every single possible word 
-                        if self.search(word[i+1:], cur[key]): #only return when its True (when we find a match), if False, we will continue with for loop and check other keys.
-                            return True                       
-                    else: #if . is last character, we need to check if there is an end for any character
-                        if "-" in cur[key]:
-                            return True #only return True if we found an end, if not, we will continue to see if the other key has an end to it, until we run out of keys, then we return False at the very end
-                return False
-            
-            #normal checking when its a normal character
-            # else: #we can do this or not, it didn't change much
+                    x = word[i+1:] if i+1 < len(word) else ""
+
+                    if self.search(x, cur[key]): #have to start from where the current key is, and pass in the part of words that is not checked yet
+                        return True #only return True when we find a match, other wise keep checking
+                    #didn't separate case when . is last character, this is because i realized that it will still be the same. It is extra here to check if "-" is in cur[key], becuz if we just leave the condition like above, it will recursively search("", cur[key]) again where the for loop will be skip since empty string and then go straight to returning "-" in cur
+
+                #      if i < len(word) - 1:
+                #         if self.search(word[i+1:], cur[key]): 
+                #             return True                       
+                #     else:
+                #         if "-" in cur[key]:
+                #             return True 
+                # return False 
+
             if c not in cur:
                 return False
             cur = cur[c]
+        
         return "-" in cur
+
         
 
 def loop(arr , arr2):

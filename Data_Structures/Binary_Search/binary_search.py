@@ -32,6 +32,6 @@ def binary_search_recursive(data, target, low, high):
         if data[mid] == target:
             return True
         elif data[mid] > target:
-            return binary_search_recursive(data, target, mid + 1, high)
-        else:
             return binary_search_recursive(data, target, low, mid - 1)
+        else:
+            return binary_search_recursive(data, target, mid + 1, high)
