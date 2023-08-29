@@ -9,3 +9,4 @@ notes:
 - Backtracking follows Depth-First Search method.
 - Branch and Bound is also a Brute Force approach, which uses Breadth-First Search method.
 """
+#worst case time complexity O(2^n) = height of tree?

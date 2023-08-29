@@ -10,7 +10,7 @@ class Solution:
     #basically did subset.py and then I sorted solutions and use set to eliminate duplicates
 
     # speed 66-99% memory 56%
-    def subsetsWithDup_neetcode(self, nums: List[int]) -> List[List[int]]:
+    def subsetsWithDup_neetcode(self, nums):
         
         output = []
         nums.sort() #or nums = sorted(nums)
