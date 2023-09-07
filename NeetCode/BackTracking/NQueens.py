@@ -1,34 +1,44 @@
-class Solution(object):
-    #neetcode solution, 96% speed 40% memory
+
+    #neetcode solution, 82% speed 95% memory
     #understood the logic but didn't know how to implement the code
+
+class Solution(object):
     def solveNQueens(self, n):
         res = []
-        col = set() #we don't need row, since we are placing 1 col in every row (no repeated rows)
-        posDiag = set() #r+c = contant
-        negDiag = set() #r-c = constant
+        col = set() #keep track of columns
+        #if in the same diagonal, the constant will be same (r-c will always = 0 for [0,0], [1,1] .. so on, so we know that if we see the same constant, that means a queen already exists in that diagonal)
+        posDiag = set() #r+c (increasing r while decreasing c)
+        negDiag = set() #r-c (both increasing)
         board = [["."] * n for i in range(n)]
-            
-        def backtrack(r):
+
+        def backtrack(r): #increase r (no repeated rows)
+            #breaking case
             if r == n:
-                copy = ["".join(row) for row in board]
+                copy = ["".join(board[r]) for r in range(n)]
                 res.append(copy)
                 return
-            
+
             for c in range(n):
-                if c in col or (r-c) in negDiag or (r+c) in posDiag:
+                if c in col or r+c in posDiag or r-c in negDiag: #already has a queen in same column or same diagonal, then skip
                     continue
                 
+                #otherwise, place a queen here
+                board[r][c] = "Q"
                 col.add(c)
                 posDiag.add(r+c)
                 negDiag.add(r-c)
-                board[r][c] = "Q"
-                backtrack(r+1)
+                backtrack(r+1) 
 
+                #cleanup
                 col.remove(c)
                 posDiag.remove(r+c)
                 negDiag.remove(r-c)
                 board[r][c] = "."
-        
+
         backtrack(0)
         return res
+                
+                
+                
+
         
