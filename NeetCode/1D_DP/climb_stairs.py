@@ -1,5 +1,6 @@
 class Solution(object):
 
+    #Neetcode 99% speed 80% memory
     def climbStairs(self, n):
         #using the understanding of a decision tree, we see that a lot of the steps/decisions are repeated. how do we optimize a case like this? here we are going to use memoization where we keep track of the repeated parts
         #so we see that n = (n-1) + (n-2) when we start from the back of the cases
@@ -42,6 +43,22 @@ class Solution(object):
 
         dfs(0)
         return self.output
+
+#solution on leetcode discusiion
+#also memoization but another approach
+#91% speed 48% memory
+class Solution2(object):
+    def climbStairs(self, n):
+        memo = {}
+        return self.helper(n, memo)
+    
+    def helper(self, n, memo):
+        if n == 0 or n == 1:
+            return 1
+        if n not in memo:
+            memo[n] = self.helper(n-1, memo) + self.helper(n-2, memo)
+        return memo[n]
+    
 
         
         
