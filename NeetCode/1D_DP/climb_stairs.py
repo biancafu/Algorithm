@@ -2,6 +2,9 @@ class Solution(object):
 
     #Neetcode 99% speed 80% memory
     def climbStairs(self, n):
+        #when it comes to decision tree (recursion/backtracking?) we can usually find a way to make it more effificent. we will be using memoization/cache for this question (store the repeated process in a cache)
+        #when we draw the decision tree, we can see that whenever we will have repeated where n = 2, n = 3 ... and we already know the answers if we run them once (since we will only be able to add 1 or add 2 every time)
+       
         #using the understanding of a decision tree, we see that a lot of the steps/decisions are repeated. how do we optimize a case like this? here we are going to use memoization where we keep track of the repeated parts
         #so we see that n = (n-1) + (n-2) when we start from the back of the cases
         #0 case 5: 1
@@ -16,7 +19,7 @@ class Solution(object):
         one = 3
         two = 2
         
-        for i in range(4, n+1): #-1 because we started from 1, 1 not just 1
+        for i in range(4, n+1): #this is because when n = 5, we will have 012345 (total of 6) operations, since range does not include n, we have to do n + 1
             temp = one + two
             two = one
             one = temp
