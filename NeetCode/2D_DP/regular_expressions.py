@@ -1,50 +1,49 @@
-# BOTTOM-UP Dynamic Programming
-# class Solution:
-#     def isMatch(self, s: str, p: str) -> bool:
-#         cache = [[False] * (len(p) + 1) for i in range(len(s) + 1)]
-#         cache[len(s)][len(p)] = True
+class Solution(object):
+    #top dowm memoization: 75% speed 10% memory
+    def isMatch(self, s, p):
+        '''
+        -use recursion
+        -the first element will not be * (since it depends on the previous char)
 
-#         for i in range(len(s), -1, -1):
-#             for j in range(len(p) - 1, -1, -1):
-#                 match = i < len(s) and (s[i] == p[j] or p[j] == ".")
+        -if i and j are out of bound at the same time, then its a match
+        -if j is out of bound and i isn't, then its not a match (since theres no more pattern but theres more text)
+        -if i is out of bound and j isn't, then we continue to check (since we can have stars which can be equal to 0 occurence)
+        edge case: what about .*
+        '''
+        cache = {} #memoization
+        
 
-#                 if (j + 1) < len(p) and p[j + 1] == "*":
-#                     cache[i][j] = cache[i][j + 2]
-#                     if match:
-#                         cache[i][j] = cache[i + 1][j] or cache[i][j]
-#                 elif match:
-#                     cache[i][j] = cache[i + 1][j + 1]
-
-#         return cache[0][0]
-
-
-# TOP DOWN MEMOIZATION
-class Solution:
-    def isMatch(self, s: str, p: str) -> bool:
-        cache = {}
-    
-        def dfs(i, j):
-            print(i,j)
-            if (i, j) in cache:
-                return cache[(i, j)]
-            if i >= len(s) and j >= len(p):
+        def dfs(i,j):
+            #dp
+            # if (i,j) in cache:
+            #     return cache[(i,j)]
+            #breaking condition
+            if i >= len(s) and j >= len(p): #both out of bound, its a match
                 return True
-            if j >= len(p):
+            if j >= len(p): #only pattern is out of bound, not a match
                 return False
+            
+            #continue if both are in bound or only i is out of bound
 
-            match = i < len(s) and (s[i] == p[j] or p[j] == ".")
-            if (j + 1) < len(p) and p[j + 1] == "*":
-                cache[(i, j)] = dfs(i, j + 2) or (  # dont use *
-                    match and dfs(i + 1, j)
-                )  # use *
-                return cache[(i, j)]
-            if match:
-                cache[(i, j)] = dfs(i + 1, j + 1)
-                return cache[(i, j)]
-            cache[(i, j)] = False
+
+            #case 1: when characters match 
+            match = i < len(s) and (s[i] == p[j] or p[j] == ".") #wild card character
+
+            #case 2: star character
+            d   #or not add previous character (we are keeping i as it is, and incrementing j by 2 since we are skipping the character and its * value)
+
+                # return cache[(i,j)]
+
+            #case 1 extension: continue the step for normal match here
+            if match: 
+                return dfs(i+1, j+1) #increment to the next pointer 
+                # return cache[(i,j)]
+               
+            #case 3: if it doesn't match, and theres no star value
+            # cache[(i,j)] = False
             return False
+        return dfs(0,0)
 
-        return dfs(0, 0)
-s = Solution()
-a = s.isMatch("aaabaaa","a*b*a*")
-print(a)
+        
+        
+        
