@@ -1,4 +1,4 @@
-
+#speed 87% memory 77%
 def solve(board):
     """
     *mistake: it didn't cross my mind that if one of the region's surrounding is a border 'O' this would mean that it has to be neighbor with the boarder hence forming the region tgt with the border O which means that it is the same region *
@@ -6,6 +6,8 @@ def solve(board):
     - differentiate which regions are the border regions, and we can do that by doing a dfs on the boarder Os
     - flip all the unmakred O's (not boarder ones) into X since it WOULD be flippable (surrounded by X) because our border O's dfs search would mark the unflippable ones (connected to border region)
     - flip all the makred O's back to regular O's (boarder Os)
+
+    *careless mistake!! always wrote == when i wanted = only
     """
     m = len(board)
     n = len(board[0])
@@ -16,7 +18,7 @@ def solve(board):
             return
         
         #mark border Os into T
-        board[r][c] == 'T'
+        board[r][c] = 'T'
         dfs(r+1,c)
         dfs(r-1,c)
         dfs(r,c+1)
@@ -44,10 +46,10 @@ def solve(board):
         for j in range(n):
             #flip the rest of the Os into X
             if board[i][j] == 'O':
-                board[i][j] == 'X'
+                board[i][j] = 'X'
             #flip the Ts (boarder Os) back into Os
             elif board[i][j] == 'T':
-                board[i][j] == 'O'
+                board[i][j] = 'O'
 
 
 board = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
