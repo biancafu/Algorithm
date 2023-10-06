@@ -1,5 +1,5 @@
 from collections import deque
-#51% speed 85% memory
+#23%-98% speed 24%-85% memory
 class Solution(object):
     def orangesRotting(self, grid):
         """
