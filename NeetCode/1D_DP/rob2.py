@@ -3,6 +3,8 @@ class Solution(object):
     # but it wouldn't work becuz it will change the whole comparison in the middle part
     #so using this logic, we will use the previous way to solve but with diff nums array
     #we are also comparing to nums[0] in case we only have 1 value
+
+    #85% speed 94% memory
     def rob(self, nums):
         """
         split into 2
