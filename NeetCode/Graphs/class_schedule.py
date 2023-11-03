@@ -1,4 +1,6 @@
 # from collections import defaultdict
+
+#speed 87.7% memory 35.72%
 class Solution(object):
     def canFinish(self, numCourses, prerequisites):
         """
