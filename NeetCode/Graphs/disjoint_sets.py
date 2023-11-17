@@ -13,5 +13,6 @@ union operation: add another edge to a node from each set to connect 2 sets to p
 
 usually we don't group the nodes with a set, we group it with a parent (representative) so a tree
 union (Tree): select 1 as parent, and merge the other as its children
-use an array to record the weight and if it is a parent (if it is, use negative, weight is the number)
+use an array to record the weight/rank and if it is a parent (if it is, use negative, weight is the number)
 '''
+
