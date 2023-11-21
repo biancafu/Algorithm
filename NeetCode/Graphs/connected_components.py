@@ -26,7 +26,7 @@ class Solution:
             p1, w1 = find(node1)
             p2, w2 = find(node2)
 
-            if p1 == p2:
+            if p1 == p2: #need to consider this or else we will be merging the node with itself and mess up the weight
                 return
             if w1 >= w2:
                 parent[p2] = p1
