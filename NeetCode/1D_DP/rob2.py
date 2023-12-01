@@ -22,7 +22,7 @@ class Solution(object):
             
             return rob2
         
-        return max(nums[0],helper(nums[:-1]), helper(nums[1:]))
+        return max(nums[0],helper(nums[:-1]), helper(nums[1:])) #-1 not inclusive so it will return 0 from both cases, therefore we need to consider when theres only 1 number in list
     #if we only hv one value, our helpers function are passed in with empty arrays which would return 0, so we need to compare first element of nums for this edge case
     
 
