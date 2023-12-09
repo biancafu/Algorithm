@@ -43,7 +43,7 @@ Guaranteed constraints:
 
 Return true if it is possible to obtain a strictly increasing array by applying the digit-swap operation at most once, and false otherwise.
 '''
-
+# https://stackoverflow.com/questions/70268837/apply-swap-operation-at-most-once-to-get-a-strictly-increasing-sequence
 
 from collections import defaultdict
 def solution(numbers):
