@@ -41,5 +41,25 @@ def solution2(a):
     return a
 
 
-            
-solution2([[1,2,3],[4,5,6],[7,8,9]])
+#anti clockwise rotate (-90 rotate)
+def antilcockwise(matrix):
+    for i in range(len(matrix)):
+        for j in range(i+1, len(matrix)):
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+    matrix.reverse()
+    return matrix
+
+
+solution2([[1,2,3],
+           [4,5,6],
+           [7,8,9]])
+
+a = antilcockwise([ [1,2,3],
+                    [4,5,6],
+                    [7,8,9]])
+
+# 3 6 9
+# 2 5 8 
+# 1 4 7
+
+print(a)
