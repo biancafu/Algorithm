@@ -1,6 +1,6 @@
 from collections import defaultdict
 class Solution:
-    def findWords(self, board, words):
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         """
         to go through the matrix using backtracking
         nested for loop, dfs on each element to check if the word exists from the list
@@ -50,6 +50,8 @@ class Solution:
                 curr = self.trie
                 if len(word)>0:
                     curr['ref'][word[0]] -= 1
+                    if curr['ref'][word[0]] < 1:
+                        curr['ref'].pop(word[0])
                 
         
         visited = set()
@@ -89,6 +91,10 @@ class Solution:
                     dfs(i,j, root.trie, "", root)
         
         return output
+            
+            
+            
+
             
             
 s = Solution()

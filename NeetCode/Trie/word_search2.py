@@ -1,5 +1,3 @@
-#100% speed 98% memory but solution is kinda to complicated for me to understand, 
-#i will come back to solve this after finishing backtracking
 class Trie:
     def __init__(self, words = None):
 		# The variable length stores the total number of children of this node.
