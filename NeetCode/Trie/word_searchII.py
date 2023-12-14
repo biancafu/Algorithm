@@ -1,7 +1,10 @@
 from collections import defaultdict
+
+#61% 71%
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         """
+        initial: 
         to go through the matrix using backtracking
         nested for loop, dfs on each element to check if the word exists from the list
 
@@ -12,6 +15,16 @@ class Solution:
         iterate through matrix
         dfs
         check if word exists in Trie
+
+        mistakes:
+        thought of removing the word too easily, remember if there are multiple words that has same prefix
+        when we remove the word (the way i first did: popping it out of dict), the other words with same prefix will disappear as well
+        hence we need to keep track of how many times this word appeared (can check wordsearch 2, has another faster way)
+        my thought was that the first character can be where we store this info (under root.trie['ref'])
+        it will store the first character of each word and how many times it occured
+
+        to use this, we will check if the occurance is >= 1, if it is >= 1 that means there is still words starting with this letter
+        other wise, if its < 1, it means we dont wanna dfs into this character, because there's no word starting with character
         """
 
         class Trie:
@@ -28,23 +41,23 @@ class Solution:
                     curr = curr[char] #increment
                 curr["-"] = True     
 
-            def search(self, word:str) -> bool:
-                curr = self.trie   
+            # def search(self, word:str) -> bool:
+            #     curr = self.trie   
                 
-                for c in word:
-                    if c not in curr:
-                        return False
-                    curr = curr[c]
-                return "-" in curr
+            #     for c in word:
+            #         if c not in curr:
+            #             return False
+            #         curr = curr[c]
+            #     return "-" in curr
             
-            def startsWith(self, word:str) -> bool:
-                curr = self.trie   
+            # def startsWith(self, word:str) -> bool:
+            #     curr = self.trie   
                 
-                for c in word:
-                    if c not in curr:
-                        return False
-                    curr = curr[c]
-                return True
+            #     for c in word:
+            #         if c not in curr:
+            #             return False
+            #         curr = curr[c]
+            #     return True
             
             def remove(self, word:str):
                 curr = self.trie
