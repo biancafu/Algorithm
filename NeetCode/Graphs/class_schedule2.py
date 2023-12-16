@@ -1,4 +1,5 @@
 class Solution(object):
+    #this uses topological sort
     def findOrder(self, numCourses, prerequisites):
         """
         total of numCourses labeled from 0 ~ numCourses-1
