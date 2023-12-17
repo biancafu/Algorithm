@@ -1,5 +1,6 @@
 class Solution(object):
     #this uses topological sort
+    #O(E+V) = O(prerequisite + course)
     def findOrder(self, numCourses, prerequisites):
         """
         total of numCourses labeled from 0 ~ numCourses-1
