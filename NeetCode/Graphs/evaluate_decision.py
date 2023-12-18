@@ -1,6 +1,7 @@
 from types import List
 from collections import defaultdict, deque
 
+# similar to currency exchange
 # couldnt do the question at all by myself
 # time 71% memory 23%
 class Solution:
@@ -26,6 +27,8 @@ class Solution:
 
         bfs better for cycle detection
 
+        time complexity: O(q*(E+V))
+        space complexity: O(E+V )
         '''
 
         #create graph
