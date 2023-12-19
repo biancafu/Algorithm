@@ -1,4 +1,4 @@
-#use Bellman Ford's algorithm
+#use Bellman Ford's algorithm: used to find shortest path, but we want max amount so we will -*log(Rate) values
 
 #create a weighted graph using log(rate) as their weight
 
