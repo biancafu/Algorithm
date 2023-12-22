@@ -5,6 +5,7 @@ class Connect4():
         self.board = [[0 for c in range(self.cols)] for r in range(self.rows)] 
         self.gameover = False
         self.winner = ""
+        self.col_tracker = 0
 
     def is_column_available(self, col):
         return self.board[self.rows-1][col] == 0
@@ -56,6 +57,15 @@ class Connect4():
                 if self.winning_move(team):
                     self.gameover = True
                     self.winner = str(team)
+            else: #column full
+                self.col_tracker += 1
+                #need some more stuff (a loop when columns r full again)
+            
+            if self.col_tracker == self.cols:
+                self.gameover = True
+                print("its a tie!")
+                return
+            
             turn += 1
         
         print("team"+self.winner+" has won the game!")
